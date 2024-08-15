@@ -53,6 +53,10 @@ class ParlerTTS:
                 sf.write(output_path, audio_arr, self.model.config.sampling_rate)
         else:
             # Generate audio for each chunk
+            prompt_input_ids = self.tokenizer(
+                    prompt, return_tensors="pt"
+                ).input_ids.to(self.device)
+
             generation = self.model.generate(
                 input_ids=input_ids, prompt_input_ids=prompt_input_ids
             )
