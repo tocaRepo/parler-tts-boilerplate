@@ -18,8 +18,10 @@ description = "Jon's voice is monotone yet slightly fast in delivery, with a ver
 output_path_prefix = "parler_tts_out"
 combined_output_path = "combined_parler_tts_out.wav"
 
+split_input=True
 # Generate individual audio files
-tts.generate_speech(prompt, description, output_path_prefix,True)
+tts.generate_speech(prompt, description, output_path_prefix,split_input)
 
-# Combine the generated audio files into one large file
-combine_audio_files(output_path_prefix, combined_output_path)
+if(split_input):
+    # Combine the generated audio files into one large file
+    combine_audio_files(output_path_prefix, combined_output_path)
